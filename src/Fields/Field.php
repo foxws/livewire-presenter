@@ -1,10 +1,10 @@
 <?php
 
-namespace Foxws\Presenter\Columns;
+namespace Foxws\Presenter\Fields;
 
 use Foxws\Presenter\Support\Attributable;
 
-class Column extends Attributable
+class Field extends Attributable
 {
     protected array $attributes = [];
 

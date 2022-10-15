@@ -18,7 +18,11 @@ trait WithFilters
     {
         $this->filters = collect($this->filters())
             ->filter(fn ($filter) => $filter instanceof Filter && ! $filter->disabled)
-            ->map(fn (Filter $filter) => $filter);
+            ->map(function (Filter $filter) {
+                $filter->value = $this->getFilterValue($filter);
+
+                return $filter;
+            });
     }
 
     public function getFiltersProperty(): Collection
@@ -28,20 +32,18 @@ trait WithFilters
 
     protected function findFilter(string $name): ?Filter
     {
-        return collect($this->filters())
-            ->filter(fn ($filter) => $filter instanceof Filter)
-            ->first(fn (Filter $filter) => $filter->name === $name);
-    }
-
-    protected function getFilter(string $name): ?Filter
-    {
         return $this->filters
             ->first(fn (Filter $filter) => $filter->name === $name);
     }
 
-    protected function getFilterValue(string $name, mixed $default = null): mixed
+    protected function getFilter(string $name, mixed $default = null): mixed
     {
-        return $this->getFilter($name)?->value ?? $default;
+        return $this->findFilter($name)?->value ?? $default;
+    }
+
+    protected function getFilterValue(Filter $filter): mixed
+    {
+        return data_get($this->filter, $filter->name) ?? $filter->value;
     }
 
     protected function getHiddenFilters(): Collection

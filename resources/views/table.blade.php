@@ -1,9 +1,9 @@
 <table>
     <thead>
         <tr>
-            @foreach ($this->getVisibleColumns() as $column)
-                <th @if ($isSortable($column)) wire:click="$emit('setSort', '{{ $column->name }}')" @endif>
-                    {{ $column->label ?: $column->name }}
+            @foreach ($this->getVisibleFields() as $field)
+                <th @if ($isSortable($field)) wire:click="$emit('setSort', '{{ $field->name }}')" @endif>
+                    {{ $field->label ?: $field->name }}
                 </th>
             @endforeach
         </tr>
@@ -12,13 +12,13 @@
     <tbody>
         @forelse ($this->items as $item)
         <tr>
-            @foreach ($this->getVisibleColumns() as $column)
-                <x-dynamic-component :component="$column->view" :column="$column" :item="$item" />
+            @foreach ($this->getVisibleFields() as $field)
+                <x-dynamic-component :component="$field->view" :field="$field" :item="$item" />
             @endforeach
         </tr>
         @empty
         <tr>
-            <td colspan="{{ $this->getColumnCount() }}">
+            <td colspan="{{ $this->getFieldCount() }}">
                 {{ __('No entries found.') }}
             </td>
         </tr>

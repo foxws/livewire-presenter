@@ -18,7 +18,7 @@ composer require foxws/livewire-presenter
 ```php
 <?php
 
-use Foxws\Presenter\Columns\Column;
+use Foxws\Presenter\Fields\Field;
 use Foxws\Presenter\Presenter;
 use Foxws\Presenter\Filters\Filter;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -43,20 +43,20 @@ class UserOverviewController extends Presenter
     protected function builder(): LengthAwarePaginator
     {
         return User::all()
-            ->sort(column: $this->sort, direction: $this->direction)
+            ->sort(field: $this->sort, direction: $this->direction)
             ->paginate(perPage: $this->perPage);
     }
 
-    protected function columns(): array
+    protected function fields(): array
     {
         return [
-            Column::new()
+            Field::new()
                 ->name('name')
                 ->label(__('Name'))
                 ->view('users.presenter.name')
                 ->sortable(),
 
-            Column::new()
+            Field::new()
                 ->name('email')
                 ->label(__('Email'))
                 ->view('users.presenter.email'),

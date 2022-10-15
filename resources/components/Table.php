@@ -1,6 +1,6 @@
 <?php
 
-use Foxws\Presenter\Columns\Column;
+use Foxws\Presenter\Fields\Field;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -11,13 +11,13 @@ class Table extends Component
         return view('table');
     }
 
-    public function isSortable(Column $column): bool
+    public function isSortable(Field $field): bool
     {
-        return (bool) $column->sortable;
+        return (bool) $field->sortable;
     }
 
-    public function isHidden(Column $column): bool
+    public function isHidden(Field $field): bool
     {
-        return (bool) $column->hidden;
+        return (bool) $field->hidden;
     }
 }
