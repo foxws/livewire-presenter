@@ -1,24 +1,25 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "foxws/livewire-presenter",
+    "description": "A Livewire data presenter component",
     "keywords": [
-        ":vendor_name",
+        "foxws",
         "laravel",
-        ":package_slug"
+        "livewire-presenter"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/foxws/livewire-presenter",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "foxws",
+            "email": "f.menning@pm.me",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/contracts": "^9.0"
+        "illuminate/contracts": "^9.0",
+        "livewire/livewire": "^2.10",
+        "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -35,13 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Foxws\\Presenter\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Foxws\\Presenter\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Foxws\\Presenter\\PresenterServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Presenter": "Foxws\\Presenter\\Facades\\Presenter"
             }
         }
     },
