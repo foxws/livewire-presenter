@@ -13,6 +13,12 @@ You can install the package via composer:
 composer require foxws/livewire-presenter
 ```
 
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="livewire-presenter"
+
+
 ## Usage
 
 ```php
