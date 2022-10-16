@@ -57,4 +57,9 @@ trait WithFilters
     {
         return $this->filters->count();
     }
+
+    protected function resetFilters(): int
+    {
+        return $this->reset('filter');
+    }
 }

@@ -9,6 +9,11 @@ trait WithEvents
         $this->setFilter($name, $value);
     }
 
+    public function resetFiltersEvent(): void
+    {
+        $this->resetFilters();
+    }
+
     public function setSortEvent(string $name, string $direction = 'asc'): void
     {
         $this->setSort($name, $direction);
@@ -19,8 +24,7 @@ trait WithEvents
         return [
             'refreshPresenter' => '$refresh',
             'setFilter' => 'setFilterEvent',
-            // 'resetFilter' => 'resetFilterEvent',
-            // 'resetFilters' => 'resetFiltersEvent',
+            'resetFilters' => 'resetFiltersEvent',
             'setSort' => 'setSortEvent',
         ];
     }

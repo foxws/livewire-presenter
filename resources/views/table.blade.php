@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-        @forelse ($this->items as $item)
+        @forelse ($this->builder()->items() as $item)
         <tr>
             @foreach ($this->getVisibleFields() as $field)
                 <x-dynamic-component :component="$field->view" :field="$field" :item="$item" />
