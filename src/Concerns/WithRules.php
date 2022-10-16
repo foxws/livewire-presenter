@@ -4,9 +4,14 @@ namespace Foxws\Presenter\Concerns;
 
 trait WithRules
 {
+    protected $rules = [];
+
     protected function rules(): array
     {
-        return config('presenter.rules');
+        return array_merge(
+            config('presenter.rules'),
+            $this->rules,
+        );
     }
 
     protected function validateRequest(): void
