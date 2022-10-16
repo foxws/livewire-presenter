@@ -34,16 +34,12 @@ class UserOverviewController extends Presenter
     public function render(): View
     {
         return view('users.overview')
-            ->layout('layouts.app')
-            ->with([
-                'builder' => $this->builder(),
-            ]);
+            ->layout('layouts.app');
     }
 
     protected function builder(): LengthAwarePaginator
     {
         return User::all()
-            ->sort(field: $this->sort, direction: $this->direction)
             ->paginate(perPage: $this->perPage);
     }
 
