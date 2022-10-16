@@ -13,7 +13,7 @@
         @forelse ($this->builder()->items() as $item)
         <tr>
             @foreach ($this->getVisibleFields() as $field)
-                <x-dynamic-component :component="$field->view" :field="$field" :item="$item" />
+                <x-dynamic-component :component="$field->component" :field="$field" :item="$item" />
             @endforeach
         </tr>
         @empty

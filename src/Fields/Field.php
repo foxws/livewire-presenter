@@ -25,6 +25,13 @@ class Field extends Attributable
         return $this;
     }
 
+    public function component(string $component): self
+    {
+        $this->attributes(['component' => $component]);
+
+        return $this;
+    }
+
     public function disabled(bool $disabled = true): self
     {
         $this->attributes(['disabled' => $disabled]);
@@ -49,13 +56,6 @@ class Field extends Attributable
     public function sortable(bool $sortable = true): self
     {
         $this->attributes(['sortable' => $sortable]);
-
-        return $this;
-    }
-
-    public function view(string $view): self
-    {
-        $this->attributes(['view' => $view]);
 
         return $this;
     }

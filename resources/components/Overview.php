@@ -32,13 +32,13 @@ class Overview extends Presenter
             Field::new()
                 ->name('name')
                 ->label(__('Name'))
-                ->view('users.presenter.name')
+                ->component('users.presenter.name')
                 ->sortable(),
 
             Field::new()
                 ->name('email')
                 ->label(__('Email'))
-                ->view('users.presenter.email'),
+                ->component('users.presenter.email'),
         ];
     }
 
