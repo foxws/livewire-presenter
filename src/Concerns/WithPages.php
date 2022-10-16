@@ -6,11 +6,6 @@ trait WithPages
 {
     public function bootWithPages(): int
     {
-        return $this->perPage ?? config('presenter.page_size');
-    }
-
-    public function getDefaultPerPage(): int
-    {
         return config('presenter.page_size');
     }
 
