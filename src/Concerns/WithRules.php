@@ -4,7 +4,7 @@ namespace Foxws\Presenter\Concerns;
 
 trait WithRules
 {
-    protected $rules = [];
+    protected array $rules = [];
 
     protected function rules(): array
     {
