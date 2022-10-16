@@ -4,10 +4,11 @@ use App\Models\User;
 use Foxws\Presenter\Fields\Field;
 use Foxws\Presenter\Filters\Filter;
 use Foxws\Presenter\Presenter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 
-class Overview extends Presenter
+class Users extends Presenter
 {
     public function mount()
     {
@@ -22,8 +23,17 @@ class Overview extends Presenter
 
     protected function builder(): LengthAwarePaginator
     {
-        return User::all()
+        $type = $this->getFilter('type');
+
+        return User::query()
+            ->when($type, fn (Builder $query) => $query->withType($type))
+            ->orderBy(column: $this->sort, direction: $this->direction)
             ->paginate(perPage: $this->perPage);
+    }
+
+    protected function configure(): void
+    {
+        //
     }
 
     protected function fields(): array

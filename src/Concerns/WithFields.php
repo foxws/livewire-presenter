@@ -19,7 +19,7 @@ trait WithFields
         $this->fields = collect($this->fields())
             ->filter(fn ($field) => $field instanceof Field && ! $field->disabled)
             ->map(function (Field $field) {
-                $field->hidden = $this->isHiddenField($field);
+                $field->hidden = in_array($field->name, $this->hidden) ?? $field->hidden;
 
                 return $field;
             });
@@ -67,11 +67,6 @@ trait WithFields
     protected function getFieldCount(): int
     {
         return $this->fields->count();
-    }
-
-    protected function isHiddenField(Field $field): bool
-    {
-        return in_array($field->name, $this->hidden) ?? (bool) $field->hidden;
     }
 
     protected function resetFields(): void

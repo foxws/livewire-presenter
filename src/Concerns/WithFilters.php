@@ -19,7 +19,7 @@ trait WithFilters
         $this->filters = collect($this->filters())
             ->filter(fn ($filter) => $filter instanceof Filter && ! $filter->disabled)
             ->map(function (Filter $filter) {
-                $filter->value = $this->getFilterValue($filter);
+                $filter->value = data_get($this->filter, $filter->name) ?? $filter->value;
 
                 return $filter;
             });
@@ -41,15 +41,15 @@ trait WithFilters
         return $this->findFilter($name)?->value ?? $default;
     }
 
-    protected function getFilterValue(Filter $filter): mixed
+    protected function hasFilter(string $name): bool
     {
-        return data_get($this->filter, $filter->name) ?? $filter->value;
+        return null !== $this->getFilter($name);
     }
 
     protected function getHiddenFilters(): Collection
     {
         return $this->filters
-            ->filter(fn (Filter $filter) => $filter->hidden === true)
+            ->filter(fn (Filter $filter) => $filter->hidden)
             ->values();
     }
 

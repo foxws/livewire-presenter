@@ -49,6 +49,11 @@ class UserOverviewController extends Presenter
             ->paginate(perPage: $this->perPage);
     }
 
+    protected function configure(): void
+    {
+        //
+    }
+
     protected function fields(): array
     {
         return [
