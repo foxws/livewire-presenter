@@ -25,6 +25,13 @@ class Filter extends Attributable
         return $this;
     }
 
+    public function component(string $component): self
+    {
+        $this->attributes(['component' => $component]);
+
+        return $this;
+    }
+
     public function disabled(bool $disabled = true): self
     {
         $this->attributes(['disabled' => $disabled]);
@@ -42,13 +49,6 @@ class Filter extends Attributable
     public function value(mixed $value = null): self
     {
         $this->attributes(['value' => $value]);
-
-        return $this;
-    }
-
-    public function view(string $view): self
-    {
-        $this->attributes(['view' => $view]);
 
         return $this;
     }
