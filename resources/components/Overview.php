@@ -2,8 +2,8 @@
 
 use App\Models\User;
 use Foxws\Presenter\Fields\Field;
-use Foxws\Presenter\Presenter;
 use Foxws\Presenter\Filters\Filter;
+use Foxws\Presenter\Presenter;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 
