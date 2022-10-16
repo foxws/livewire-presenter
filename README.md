@@ -1,4 +1,4 @@
-# A lightweight Livewire presenter component
+# A Livewire presenter component
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/foxws/livewire-presenter.svg?style=flat-square)](https://packagist.org/packages/foxws/livewire-presenter)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/foxws/livewire-presenter/run-tests?label=tests)](https://github.com/foxws/livewire-presenter/actions?query=workflow%3Arun-tests+branch%3Amain)

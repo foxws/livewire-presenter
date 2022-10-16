@@ -11,7 +11,6 @@ class PresenterServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('livewire-presenter')
-            ->hasConfigFile('presenter')
-            ->hasViews();
+            ->hasConfigFile('presenter');
     }
 }
