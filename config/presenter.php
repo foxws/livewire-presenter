@@ -17,7 +17,6 @@ return [
         'sort' => ['except' => '', 'as' => 's'],
         'direction' => ['except' => 'asc', 'as' => 'd'],
         'filter' => ['except' => '', 'as' => 'f'],
-        'hidden' => ['except' => '', 'as' => 'h'],
     ],
 
     /*
@@ -36,7 +35,7 @@ return [
         'sort' => 'sometimes|string',
         'direction' => 'sometimes|string|in:asc,desc',
         'filter' => 'sometimes|array',
-        'hidden' => 'sometimes|array',
+        'visible' => 'sometimes|array',
     ],
 
     /*

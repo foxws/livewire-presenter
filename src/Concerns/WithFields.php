@@ -17,17 +17,7 @@ trait WithFields
     protected function setFields(): void
     {
         $this->fields = collect($this->fields())
-            ->filter(fn ($field) => $field instanceof Field && ! $field->disabled)
-            ->map(function (Field $field) {
-                $field->hidden = in_array($field->name, $this->hidden) ?? $field->hidden;
-
-                return $field;
-            });
-    }
-
-    public function getFieldsProperty(): Collection
-    {
-        return $this->fields;
+            ->filter(fn ($field) => $field instanceof Field && ! $field->disabled);
     }
 
     protected function findField(string $name): ?Field
@@ -41,6 +31,13 @@ trait WithFields
     {
         return $this->fields
             ->first(fn (Field $field) => $field->name === $name);
+    }
+
+    protected function getHiddenFields(): Collection
+    {
+        return $this->fields
+            ->filter(fn (Field $field) => $field->hidden)
+            ->values();
     }
 
     protected function getSearchableFields(): Collection

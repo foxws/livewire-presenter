@@ -17,12 +17,7 @@ trait WithFilters
     public function setFilters(): void
     {
         $this->filters = collect($this->filters())
-            ->filter(fn ($filter) => $filter instanceof Filter && ! $filter->disabled)
-            ->map(function (Filter $filter) {
-                $filter->value = data_get($this->filter, $filter->name) ?? $filter->value;
-
-                return $filter;
-            });
+            ->filter(fn ($filter) => $filter instanceof Filter && ! $filter->disabled);
     }
 
     public function getFiltersProperty(): Collection
