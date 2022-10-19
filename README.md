@@ -102,7 +102,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [foxws](https://github.com/foxws)
+- [rappasoft](https://github.com/rappasoft/laravel-livewire-tables)
 - [All Contributors](../../contributors)
 
 ## License
