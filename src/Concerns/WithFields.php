@@ -9,9 +9,16 @@ trait WithFields
 {
     protected Collection $fields;
 
+    public array $visible = [];
+
     public function bootWithFields(): void
     {
         $this->fields = collect();
+    }
+
+    public function updatedVisible(): void
+    {
+        $this->setVisible();
     }
 
     protected function setFields(): void
@@ -66,8 +73,42 @@ trait WithFields
         return $this->fields->count();
     }
 
-    protected function resetFields(): void
+    protected function resetVisible(): void
     {
-        $this->reset('fields');
+        $this->reset('visible');
+    }
+
+    protected function setVisible(): void
+    {
+        $this->fields->map(function (Field $field) {
+            $field->hidden = in_array($field->name, $this->visible) ? false : true;
+
+            return $field;
+        });
+
+        $this->storeVisible();
+    }
+
+    protected function storeVisible(): void
+    {
+        if (! $this->rememberVisibleFields) {
+            return;
+        }
+
+        $this->setSession('visible', $this->visible);
+    }
+
+    protected function syncVisible(): void
+    {
+        // Only sync on first initialize
+        if (count($this->visible) > 0) {
+            return;
+        }
+
+        $this->visible = $this->hasSession('visible')
+            ? $this->getSession('visible', [])
+            : $this->getVisibleFields()->pluck('name')->all();
+
+        $this->setVisible();
     }
 }

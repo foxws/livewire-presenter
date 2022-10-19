@@ -9,6 +9,8 @@ trait WithFilters
 {
     protected Collection $filters;
 
+    public array $filter = [];
+
     public function bootWithFilters(): void
     {
         $this->filters = collect();

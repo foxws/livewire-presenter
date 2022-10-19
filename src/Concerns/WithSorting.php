@@ -4,6 +4,10 @@ namespace Foxws\Presenter\Concerns;
 
 trait WithSorting
 {
+    public string $sort = '';
+
+    public string $direction = 'asc';
+
     protected function setSort(string $column = '', string $direction = 'asc'): void
     {
         // Toggle sort direction

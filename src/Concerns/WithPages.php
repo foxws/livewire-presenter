@@ -4,6 +4,8 @@ namespace Foxws\Presenter\Concerns;
 
 trait WithPages
 {
+    public int $perPage = 10;
+
     public function bootWithPages(): int
     {
         return config('presenter.page_size');
