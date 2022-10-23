@@ -1,3 +1,0 @@
-<div>
-    Actions here
-</div>
