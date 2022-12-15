@@ -2,68 +2,63 @@
 
 namespace Foxws\Presenter\Fields;
 
-use Foxws\Presenter\Support\Attributable;
+use Illuminate\Support\Fluent;
 
-class Field extends Attributable
+class Field extends Fluent
 {
-    protected array $attributes = [];
+    public static function new(): static
+    {
+        $instance = new static();
 
-    /** @var callable|null */
-    protected $callableAttributes;
+        return $instance;
+    }
 
     public function name(string $name): self
     {
-        $this->attributes(['name' => $name]);
+        $this->name = $name;
 
         return $this;
     }
 
     public function label(string $label): self
     {
-        $this->attributes(['label' => $label]);
+        $this->label = $label;
 
         return $this;
     }
 
     public function component(string $component): self
     {
-        $this->attributes(['component' => $component]);
+        $this->component = $component;
 
         return $this;
     }
 
     public function disabled(bool $disabled = true): self
     {
-        $this->attributes(['disabled' => $disabled]);
+        $this->disabled = $disabled;
 
         return $this;
     }
 
     public function hidden(bool $hidden = true): self
     {
-        $this->attributes(['hidden' => $hidden]);
+        $this->hidden = $hidden;
 
         return $this;
     }
 
     public function searchable(bool $searchable = true): self
     {
-        $this->attributes(['searchable' => $searchable]);
+        $this->searchable = $searchable;
 
         return $this;
     }
 
     public function sortable(bool $sortable = true): self
     {
-        $this->attributes(['sortable' => $sortable]);
+        $this->sortable = $sortable;
 
         return $this;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            $this->attributes,
-        ];
     }
 }

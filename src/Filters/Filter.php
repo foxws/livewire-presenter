@@ -2,61 +2,65 @@
 
 namespace Foxws\Presenter\Filters;
 
-use Foxws\Presenter\Support\Attributable;
+use Illuminate\Support\Fluent;
 
-class Filter extends Attributable
+class Filter extends Fluent
 {
-    protected array $attributes = [];
+    public static function new(): static
+    {
+        $instance = new static();
 
-    /** @var callable|null */
-    protected $callableAttributes;
+        return $instance;
+    }
 
     public function name(string $name): self
     {
-        $this->attributes(['name' => $name]);
+        $this->name = $name;
 
         return $this;
     }
 
     public function label(string $label): self
     {
-        $this->attributes(['label' => $label]);
+        $this->label = $label;
 
         return $this;
     }
 
-    public function component(string $component): self
+    public function component(string $component, array $data = []): self
     {
-        $this->attributes(['component' => $component]);
+        $this->component = $component;
+
+        collect($data)->each(fn (mixed $value = null, string $key) => $this->{$key} = $value);
 
         return $this;
     }
 
     public function disabled(bool $disabled = true): self
     {
-        $this->attributes(['disabled' => $disabled]);
+        $this->disabled = $disabled;
 
         return $this;
     }
 
     public function hidden(bool $hidden = true): self
     {
-        $this->attributes(['hidden' => $hidden]);
+        $this->hidden = $hidden;
 
         return $this;
     }
 
-    public function value(mixed $value = null): self
+    public function searchable(bool $searchable = true): self
     {
-        $this->attributes(['value' => $value]);
+        $this->searchable = $searchable;
 
         return $this;
     }
 
-    public function toArray(): array
+    public function sortable(bool $sortable = true): self
     {
-        return [
-            $this->attributes,
-        ];
+        $this->sortable = $sortable;
+
+        return $this;
     }
 }
